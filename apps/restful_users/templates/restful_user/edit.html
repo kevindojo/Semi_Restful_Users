@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang= "en">
+  <head>
+    <meta charset="utf-8">
+    <title>Create a new user</title>
+    <meta name="description" content= "Insert description of webpage">
+  </head>
+  <body>
+    {% if messages %}
+      {% for message in messages%}
+    <p {% if message.tags %} class="{{ message.tags }}" {% endif %} >
+      {{ message }}
+    </p>
+      {% endfor %}
+    {% endif %}
+    <form action="/users/{{user.id}}/update" method="post">
+    {% csrf_token %}
+      <p>First Name:<input type="text" name="first_name" value={{user.first_name}}></p>
+      <p>Last Name:<input type="text" name="last_name" value={{user.last_name}}></p>
+      <p>Email:<input type="text" name="email" value={{user.email}}></p>
+      <p><input type="submit" value="Update"></p>
+    </form>
+    <p>
+      <a href="/users/{{user.id}}">Show</a> |
+      <a href="/users">Go Back</a>
+
+    </p>
+  </body>
+</html>
